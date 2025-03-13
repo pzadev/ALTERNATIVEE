@@ -16,7 +16,11 @@ const mongoUri = process.env.MONGODB_URI || "";
 const app = express();
 app.use(express.json());
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:1901"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:1901",
+  "https://kiitos.netlify.app",
+];
 
 allowedOrigins.forEach((domain) => {
   console.log(domain);

@@ -104,12 +104,13 @@ const Submissions = () => {
           className="w-full p-2 border rounded-md mb-4"
         />
 
-        <label className="block font-semibold mb-2">HQ</label>
+        <label className="block font-semibold mb-2">HQ *</label>
         <input
           type="text"
           name="HQ"
           value={formData.HQ}
           onChange={handleChange}
+          required
           className="w-full p-2 border rounded-md mb-4"
         />
 
