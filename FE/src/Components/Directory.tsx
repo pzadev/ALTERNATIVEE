@@ -127,60 +127,86 @@ const Directory = () => {
         A directory to help educate what alternatives there are to leading
         products, who owns what, and who do they support
       </h3>
-      {categoryFilter.length > 0 && !showProducts && (
-        <div className="flex flex-wrap w-[95%] gap-2 mb-5">
-          <button
-            className={`bg-gradient-to-b from-blue-600 to-blue-800 h-10 px-5 rounded-2xl text-white text-sm 
-            shadow-lg active:shadow-sm active:translate-y-1 transition-all duration-200 
-            hover:brightness-110 hover:scale-105 ${
-              selectedCategory === null
-                ? "bg-gradient-to-b from-blue-700 to-blue-900 ring-2 ring-blue-400"
-                : "bg-gradient-to-b from-gray-400 to-gray-600"
-            }`}
-            onClick={() => setSelectedCategory(null)}
-          >
-            ALL
-          </button>
-          {categoryFilter.map((cat, index) => (
-            <button
-              key={index}
-              value={cat}
-              className={`h-10 px-5 rounded-2xl text-white text-sm 
-                shadow-lg active:shadow-sm active:translate-y-1 transition-all duration-200 
-                hover:brightness-110 hover:scale-105 
-                ${
-                  selectedCategory === cat
-                    ? "bg-gradient-to-b from-blue-700 to-blue-900 ring-2 ring-blue-400"
-                    : "bg-gradient-to-b from-gray-400 to-gray-400"
-                }`}
-              onClick={() => setSelectedCategory(cat)}
+      <div className="flex gap-4 w-[85%] justify-center items-center">
+        {categoryFilter.length > 0 && !showProducts && (
+          <div className="flex ">
+            <select
+              className="h-9 w-[100%] max-w-100 rounded-xl border border-grey-300"
+              value={selectedCategory || "all"}
+              onChange={(e) => {
+                if (e.target.value === "all") {
+                  setSelectedCategory(null);
+                } else {
+                  setSelectedCategory(e.target.value);
+                }
+              }}
             >
-              {cat}
-            </button>
-          ))}
-        </div>
-      )}
+              <option
+                value="all"
+                className="bg-gradient-to-b from-blue-600 to-blue-800 text-white"
+              >
+                All Categories
+              </option>
+              {categoryFilter.map((cat, index) => (
+                <option
+                  key={index}
+                  value={cat}
+                  className="bg-gradient-to-b from-blue-600 to-blue-800 text-white"
+                >
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
-      <div className="flex flex-row gap-3 w-[90%]">
+        {!showProducts && (
+          <div className="flex">
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="h-9 w-[100%] max-w-100 border border-black rounded-xl"
+            >
+              <option value="">All Countries</option>
+              {countryFilter.map((country, index) => (
+                <option key={index} value={country}>
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        {/* {showProducts && (
+          <p className="ml-5 text-gray-800 font-bold">
+            Below you will find popular products from American companies and
+            their friendly alternatives. Simply click on an alternative to go to
+            it's product page where you can see it's info and their website
+            link.
+          </p>
+        )} */}
+      </div>
+
+      <div className="flex gap-5 w-[100%] mt-4 justify-center items-center">
         <button
-          className={`relative w-[20%] max-w-15 h-8 mt-1.5 flex items-center bg-gray-300 rounded-full p-1 transition ${
+          className={`w-15 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
             showProducts ? "bg-green-500" : "bg-gray-400"
           }`}
           onClick={handleProductButton}
         >
           <span
-            className={`w-6 h-6 bg-white rounded-full shadow-md transform transition ${
-              showProducts ? "translate-x-6" : "translate-x-0"
+            className={`w-6 h-6 bg-white rounded-full shadow-md transition-transform transform ${
+              showProducts ? "translate-x-7" : "translate-x-0"
             }`}
           ></span>
         </button>
+
         {showProducts ? (
           <input
             type="text"
             placeholder="Find An Alternative To..."
             value={productSearchQuery}
             onChange={(e) => setProductSearchQuery(e.target.value)}
-            className="p-2 border border-black rounded mb-4 w-[75%]"
+            className="p-2 border border-black rounded-xl w-[65%] max-w-80"
           />
         ) : (
           <input
@@ -188,22 +214,8 @@ const Directory = () => {
             placeholder="Search Friendly Products"
             value={friendlySearchQuery}
             onChange={(e) => setFriendlySearchQuery(e.target.value)}
-            className="p-2 border border-black rounded mb-4 w-[90%]"
+            className="p-2 border border-black rounded-xl w-[65%] max-w-80"
           />
-        )}
-        {!showProducts && (
-          <select
-            value={selectedCountry}
-            onChange={(e) => setSelectedCountry(e.target.value)}
-            className="h-10 w-[40%] border border-black rounded"
-          >
-            <option value="">All Countries</option>
-            {countryFilter.map((country, index) => (
-              <option key={index} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
         )}
       </div>
 
@@ -232,9 +244,7 @@ const Directory = () => {
                 ) : (
                   ""
                 )}
-                <p className="text-xl">
-                {item.Name}
-                </p>
+                <p className="text-xl">{item.Name}</p>
               </Link>
 
               <div className="w-full text-left">

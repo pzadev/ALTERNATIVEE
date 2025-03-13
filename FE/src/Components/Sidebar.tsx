@@ -9,12 +9,12 @@ interface SidebarProps {
 
 const Sidebar = ({ setIsSidebarOpen }: SidebarProps) => {
   return (
-    <div className="fixed top-0 left-0 w-64 h-full bg-white border-r-2 text-black p-5 z-3">
+    <div className="fixed top-0 left-0 w-64 h-full bg-white border-r-1 border-gray-300 text-black p-5 z-3">
       <div className="flex items-center w-full mb-3 justify-between">
         <GlobeAltIcon className="h-7 w-8 text-black mr-1 hover:text-blue-500" />
         <a href="/">
           <p className="text-black text-[19px] text-center font-bold hover:text-blue-500 ">
-          Variaatio
+          VARIAATIO
           </p>
         </a>
         <XMarkIcon
@@ -29,7 +29,7 @@ const Sidebar = ({ setIsSidebarOpen }: SidebarProps) => {
             className="flex items-center text-black hover:text-blue-500"
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaInfo className="h-6 w-6 mr-4" /> About Variaatio
+            <FaInfo className="h-6 w-6 mr-4" /> About VARIAATIO
           </a>
         </li>
         <li className="mb-5">
