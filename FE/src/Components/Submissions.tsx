@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { postItem } from "../api";
 
 const Submissions = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    summary: "",
-    alternativeTo: "",
-    category: "",
-    link: "",
-    image: "",
-    country: "",
-    hq: "",
+    Name: "",
+    Summary: "",
+    AlternativeTo: [""],
+    Category: [""],
+    Website: "",
+    Image: "",
+    Country: "",
+    HQ: "",
+    Parent: "",
+    OpenSource: false,
+    Votes: 0,
   });
 
   const handleChange = (
@@ -18,12 +22,17 @@ const Submissions = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
-    alert("Thank you for your submission! Our team will review it soon.");
+    try {
+      const response = await postItem(formData);
+      console.log("Response:", response);
+      alert("Thank you for your submission! Our team will review it soon.");
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
-
   return (
     <div className="flex flex-col items-center p-6 max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold text-center text-blue-700 mb-4">
@@ -48,8 +57,8 @@ const Submissions = () => {
         </label>
         <input
           type="text"
-          name="name"
-          value={formData.name}
+          name="Name"
+          value={formData.Name}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded-md mb-4"
@@ -58,8 +67,8 @@ const Submissions = () => {
         <label className="block font-semibold mb-2">Alternative to *</label>
         <input
           type="text"
-          name="alternativeTo"
-          value={formData.alternativeTo}
+          name="AlternativeTo"
+          value={formData.AlternativeTo}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded-md mb-4"
@@ -68,8 +77,8 @@ const Submissions = () => {
         <label className="block font-semibold mb-2">Category *</label>
         <input
           type="text"
-          name="category"
-          value={formData.category}
+          name="Category"
+          value={formData.Category}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded-md mb-4"
@@ -78,8 +87,8 @@ const Submissions = () => {
         <label className="block font-semibold mb-2">Website Link *</label>
         <input
           type="url"
-          name="link"
-          value={formData.link}
+          name="Website"
+          value={formData.Website}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded-md mb-4"
@@ -88,8 +97,8 @@ const Submissions = () => {
         <label className="block font-semibold mb-2">Country of Service *</label>
         <input
           type="text"
-          name="country"
-          value={formData.country}
+          name="Country"
+          value={formData.Country}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded-md mb-4"
@@ -98,8 +107,8 @@ const Submissions = () => {
         <label className="block font-semibold mb-2">HQ</label>
         <input
           type="text"
-          name="hq"
-          value={formData.hq}
+          name="HQ"
+          value={formData.HQ}
           onChange={handleChange}
           className="w-full p-2 border rounded-md mb-4"
         />
@@ -107,8 +116,8 @@ const Submissions = () => {
         <label className="block font-semibold mb-2">Image *</label>
         <input
           type="text"
-          name="image"
-          value={formData.image}
+          name="Image"
+          value={formData.Image}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded-md mb-4"
@@ -116,10 +125,18 @@ const Submissions = () => {
 
         <label className="block font-semibold mb-2">Summary *</label>
         <textarea
-          name="summary"
-          value={formData.summary}
+          name="Summary"
+          value={formData.Summary}
           onChange={handleChange}
           required
+          className="w-full p-2 border rounded-md mb-4"
+        />
+
+        <label className="block font-semibold mb-2">Parent</label>
+        <textarea
+          name="Parent"
+          value={formData.Parent}
+          onChange={handleChange}
           className="w-full p-2 border rounded-md mb-4"
         />
 

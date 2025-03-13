@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getItems, getProducts } from "../api";
 import { Link } from "react-router-dom";
 import Flag from "react-world-flags";
+import friendlySticker from "../assets/friendlySticker.png";
 
 interface Product {
   name: string;
@@ -123,9 +124,11 @@ const Directory = () => {
       <h2 className="text-black font-bold text-[24px] text-center mt-5">
         Alternative Products and Software from Friendly Countries
       </h2>
-      <h3 className="text-gray-500 text-[16px] text-center font-style: italic m-5">
+      <h3 className="text-gray-500 text-[16px] w-[65%] text-center font-style: italic m-5">
         A directory to help educate what alternatives there are to leading
-        products, who owns what, and who do they support
+        products, who owns what, and who do they support. Toggle the switch
+        below to view popular items and their alternatives or to view friendly
+        products from friendly companies.
       </h3>
       <div className="flex gap-4 w-[85%] justify-center items-center">
         {categoryFilter.length > 0 && !showProducts && (
@@ -176,17 +179,9 @@ const Directory = () => {
             </select>
           </div>
         )}
-        {/* {showProducts && (
-          <p className="ml-5 text-gray-800 font-bold">
-            Below you will find popular products from American companies and
-            their friendly alternatives. Simply click on an alternative to go to
-            it's product page where you can see it's info and their website
-            link.
-          </p>
-        )} */}
       </div>
 
-      <div className="flex gap-5 w-[100%] mt-4 justify-center items-center">
+      <div className="flex gap-5 w-[100%] mt-4 mb-4 justify-center items-center">
         <button
           className={`w-15 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
             showProducts ? "bg-green-500" : "bg-gray-400"
@@ -239,90 +234,88 @@ const Directory = () => {
                   <img
                     src={item.Image}
                     alt={item.Name}
-                    className="w-85 h-20 object-cover rounded-md mb-2"
+                    className="w-95 h-30 object-contain rounded-md mb-2"
                   />
                 ) : (
                   ""
                 )}
-                <p className="text-xl">{item.Name}</p>
               </Link>
+              {/* <div className="flex justify-center items-center mb-2 mt-2">
+                <img
+                  src={friendlySticker}
+                  alt="Friendly Sticker"
+                  className="h-12 w-12"
+                />
+              </div> */}
 
-              <div className="w-full text-left">
+              <div className="w-full text-left mt-3">
                 <p className="text-lg text-black font-bold">About:</p>
-                <p className="text-md text-gray-700">
+                <span className="text-md text-black">
                   {item.Summary.split(".")[0]}.
-                </p>
+                </span>
               </div>
 
-              {item.Website && (
-                <div className="w-full text-left">
-                  <p className="text-lg text-black font-bold">Website:</p>
-                  <Link
-                    to={item.Website}
-                    className="text-blue-700 hover:underline"
-                  >
-                    {item.Website}
-                  </Link>
-                </div>
-              )}
-
-              <div className="w-full text-left mt-3">
-                <p className="text-lg text-black font-bold">Open Source?</p>
-                <p className="text-md text-gray-700">
-                  {item.OpenSource ? "Yes" : "No"}
-                </p>
-              </div>
-
-              <div className="w-full text-left mt-3">
-                <p className="text-lg text-black font-bold">Alternative To:</p>
-                <div className="flex flex-wrap gap-1">
-                  {item.AlternativeTo.length > 0 ? (
-                    item.AlternativeTo.map((alt, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-blue-600 px-2 py-1 rounded text-white text-sm"
-                      >
-                        {alt}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full text-left mt-3">
+                <div>
+                  <p className="text-lg text-black font-bold">
+                    Alternative To:
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {item.AlternativeTo.length > 0 ? (
+                      item.AlternativeTo.map((alt, idx) => (
+                        <span
+                          key={idx}
+                          className="bg-blue-600 px-2 py-1 rounded text-white text-sm"
+                        >
+                          {alt}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-gray-700">
+                        No alternatives available
                       </span>
-                    ))
-                  ) : (
-                    <span className="text-gray-700">
-                      No alternatives available
-                    </span>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
+                <div>
+                  <p className="text-lg text-black font-bold">Open Source?</p>
+                  <span className="bg-red-600 px-2 py-1 rounded text-white text-sm">
+                    {item.OpenSource ? "Yes" : "No"}
+                  </span>
+                </div>
 
-              <div className="flex-row w-full text-left mt-3">
-                <p className="text-lg text-black font-bold">HQ & Origin</p>
-                <p className="text-md text-gray-700">
-                  {item.HQ}, {item.Country}
-                </p>
-              </div>
 
-              <div className="w-full text-left mt-3">
-                <p className="text-lg text-black font-bold">Categories:</p>
-                <div className="flex flex-wrap gap-1">
-                  {item.Category.length > 0 ? (
-                    item.Category.map((cat, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-green-700 px-2 py-1 rounded text-white text-sm"
-                      >
-                        {cat}
+                <div>
+                  <p className="text-lg text-black font-bold">Origin</p>
+                  <span className="bg-orange-600 px-2 py-1 rounded text-white text-sm">
+                   {item.Country}
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-lg text-black font-bold">Categories:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {item.Category.length > 0 ? (
+                      item.Category.map((cat, idx) => (
+                        <span
+                          key={idx}
+                          className="bg-green-700 px-2 py-1 rounded text-white text-sm"
+                        >
+                          {cat}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-gray-700">
+                        No categories available
                       </span>
-                    ))
-                  ) : (
-                    <span className="text-gray-700">
-                      No categories available
-                    </span>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="w-full text-left mt-2 ">
-                <p className="text-lg text-black font-bold">Total Votes:</p>
-                <div className="flex items-center text-gray-700">
-                  <span className="text-lg">{item.Votes}</span>
+                <div>
+                  <p className="text-lg text-black font-bold">Total Votes:</p>
+                  <span className="bg-purple-500 px-2 py-1 rounded text-white text-sm">
+                    {item.Votes}
+                  </span>
                 </div>
               </div>
             </div>
@@ -331,6 +324,7 @@ const Directory = () => {
       ) : (
         ""
       )}
+
       {/* Unfriendly Products */}
       {filteredProducts.length > 0 && showProducts ? (
         <div className="flex flex-wrap justify-center gap-10">
@@ -343,7 +337,7 @@ const Directory = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-25 h-30 object-cover rounded-md mr-4"
+                  className="w-35 h-35  object-contain rounded-md mr-4"
                 />
               ) : (
                 <div className="w-25 h-30 bg-gray-400 rounded-md mr-4"></div>

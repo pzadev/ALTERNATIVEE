@@ -22,3 +22,42 @@ export const getItems = async (req: Request, res: Response): Promise<any> => {
     console.log(err);
   }
 };
+
+export const postItems = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const {
+      Name,
+      AlternativeTo,
+      Category,
+      Website,
+      Country,
+      HQ,
+      Image,
+      Summary,
+      Votes,
+      OpenSource,
+      Parent,
+    } = req.body;
+
+    const newProduct = new ItemModel({
+      Name,
+      AlternativeTo,
+      Category,
+      Website,
+      Country,
+      HQ,
+      Image,
+      Summary,
+      Votes,
+      OpenSource,
+      Parent,
+    });
+
+    await newProduct.save();
+
+    res.status(201).json(newProduct);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ err });
+  }
+};

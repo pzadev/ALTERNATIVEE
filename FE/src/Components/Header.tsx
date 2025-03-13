@@ -24,7 +24,7 @@ const Header = () => {
           to={`/`}
           className="text-black text-[21px] font-bold hover:text-blue-500"
         >
-          VARIAATIO
+          ALTERNATIVE
         </Link>
       </div>
       <Link to={`/submissions`}>

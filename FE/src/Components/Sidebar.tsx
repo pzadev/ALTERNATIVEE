@@ -14,7 +14,7 @@ const Sidebar = ({ setIsSidebarOpen }: SidebarProps) => {
         <GlobeAltIcon className="h-7 w-8 text-black mr-1 hover:text-blue-500" />
         <a href="/">
           <p className="text-black text-[19px] text-center font-bold hover:text-blue-500 ">
-          VARIAATIO
+          ALTERNATIVE
           </p>
         </a>
         <XMarkIcon
@@ -29,7 +29,7 @@ const Sidebar = ({ setIsSidebarOpen }: SidebarProps) => {
             className="flex items-center text-black hover:text-blue-500"
             onClick={() => setIsSidebarOpen(false)}
           >
-            <FaInfo className="h-6 w-6 mr-4" /> About VARIAATIO
+            <FaInfo className="h-6 w-6 mr-4" /> About ALTERNATIVE
           </a>
         </li>
         <li className="mb-5">
