@@ -20,6 +20,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:1901",
   "https://kiitos.netlify.app",
+  "https://kiitos.netlify.app"
 ];
 
 allowedOrigins.forEach((domain) => {
