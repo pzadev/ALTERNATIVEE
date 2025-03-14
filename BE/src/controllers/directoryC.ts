@@ -61,3 +61,30 @@ export const postItems = async (req: Request, res: Response): Promise<any> => {
     res.status(500).json({ err });
   }
 };
+
+export const changeVote = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const { Vote, ProductName } = req.body;
+    const item = await ItemModel.findOne({ Name: ProductName });
+
+    if (!ProductName) {
+      return res.status(400).json({ error: "ProductName is required" });
+    }
+
+    if (typeof Vote !== "number" || isNaN(Vote)) {
+      return res.status(400).json({ error: "Vote must be a valid number" });
+    }
+
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    item.Votes = (item.Votes || 0) + Vote;
+    await item.save();
+
+    res.status(200).json({ message: "Vote updated successfully", item });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err });
+  }
+};

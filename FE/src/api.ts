@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:1901/api";
-const API_URL = "https://alternativee-production.up.railway.app/api";
+const API_URL = "http://localhost:1901/api";
+// const API_URL = "https://alternativee-production.up.railway.app/api";
 
 const DIRECTORY_API_URL = `${API_URL}/directory`;
 const ITEM_API_URL = `${API_URL}/items`;
@@ -51,8 +51,23 @@ export const getItems = async (): Promise<Item[]> => {
 
 export const postItem = async (Item: Item): Promise<Item[]> => {
   try {
-    console.log(Item, "item in API");
     const response = await axios.post<Item[]>(ITEM_API_URL, Item);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const updateVotes = async (
+  Vote: Number,
+  ProductName: string
+): Promise<any> => {
+  try {
+    const response = await axios.patch(ITEM_API_URL, {
+      ProductName,
+      Votes: Vote,
+    });
     return response.data;
   } catch (error) {
     console.log(error);
