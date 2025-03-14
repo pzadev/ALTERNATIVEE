@@ -120,6 +120,22 @@ const Directory = () => {
     setShowProducts((prev) => !prev);
   };
 
+  const handleVoteUpdate = async (voteChange: number, productName: string) => {
+    try {
+      await updateVotes(voteChange, productName);
+
+      setFilteredFriendlyProducts((prevItems) =>
+        prevItems.map((item) =>
+          item.Name === productName
+            ? { ...item, Votes: item.Votes + voteChange }
+            : item
+        )
+      );
+    } catch (error) {
+      console.error("Error updating votes:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center mt-0">
       <h2 className="text-black font-bold text-[24px] text-center mt-5">
@@ -241,30 +257,19 @@ const Directory = () => {
                   ""
                 )}
               </Link>
-              {/* <div className="flex justify-center items-center mb-2 mt-2">
-                <img
-                  src={friendlySticker}
-                  alt="Friendly Sticker"
-                  className="h-12 w-12"
-                />
-              </div> */}
 
               <div className="flex items-center justify-center mt-3 space-x-3">
-                {/* Upvote Button */}
                 <button
                   className="bg-green-500 px-3 py-1 rounded text-white text-sm hover:bg-green-600 transition"
-                  onClick={() => updateVotes(1, item.Name)}
+                  onClick={() => handleVoteUpdate(1, item.Name)}
                 >
                   ▲ Upvote
                 </button>
-
-                {/* Vote Count */}
                 <span className="text-lg font-bold">{item.Votes}</span>
 
-                {/* Downvote Button */}
                 <button
                   className="bg-red-500 px-3 py-1 rounded text-white text-sm hover:bg-red-600 transition"
-                  onClick={() => updateVotes(-1, item.Name)}
+                  onClick={() => handleVoteUpdate(-1, item.Name)}
                 >
                   ▼ Downvote
                 </button>
@@ -331,12 +336,6 @@ const Directory = () => {
                       </span>
                     )}
                   </div>
-                </div>
-                <div>
-                  <p className="text-lg text-black font-bold">Total Votes:</p>
-                  <span className="bg-purple-500 px-2 py-1 rounded text-white text-sm">
-                    {item.Votes}
-                  </span>
                 </div>
               </div>
             </div>

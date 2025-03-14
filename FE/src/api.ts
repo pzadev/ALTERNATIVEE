@@ -64,9 +64,10 @@ export const updateVotes = async (
   ProductName: string
 ): Promise<any> => {
   try {
+    console.log({ ProductName, Vote });
     const response = await axios.patch(ITEM_API_URL, {
-      ProductName,
-      Votes: Vote,
+      ProductName: ProductName,
+      Vote: Vote,
     });
     return response.data;
   } catch (error) {
