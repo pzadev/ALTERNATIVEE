@@ -3,6 +3,7 @@ import { getItems, getProducts } from "../api";
 import { Link } from "react-router-dom";
 import Flag from "react-world-flags";
 import friendlySticker from "../assets/friendlySticker.png";
+import { updateVotes } from "../api";
 
 interface Product {
   name: string;
@@ -248,6 +249,27 @@ const Directory = () => {
                 />
               </div> */}
 
+              <div className="flex items-center justify-center mt-3 space-x-3">
+                {/* Upvote Button */}
+                <button
+                  className="bg-green-500 px-3 py-1 rounded text-white text-sm hover:bg-green-600 transition"
+                  onClick={() => updateVotes(1, item.Name)}
+                >
+                  ▲ Upvote
+                </button>
+
+                {/* Vote Count */}
+                <span className="text-lg font-bold">{item.Votes}</span>
+
+                {/* Downvote Button */}
+                <button
+                  className="bg-red-500 px-3 py-1 rounded text-white text-sm hover:bg-red-600 transition"
+                  onClick={() => updateVotes(-1, item.Name)}
+                >
+                  ▼ Downvote
+                </button>
+              </div>
+
               <div className="w-full text-left mt-3">
                 <p className="text-lg text-black font-bold">About:</p>
                 <span className="text-md text-black">
@@ -284,11 +306,10 @@ const Directory = () => {
                   </span>
                 </div>
 
-
                 <div>
                   <p className="text-lg text-black font-bold">Origin</p>
                   <span className="bg-orange-600 px-2 py-1 rounded text-white text-sm">
-                   {item.Country}
+                    {item.Country}
                   </span>
                 </div>
 
