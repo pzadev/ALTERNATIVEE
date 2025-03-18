@@ -33,7 +33,7 @@ const Faq = () => {
   return (
     <div className="flex flex-col items-center p-2">
       <h1 className="text-2xl font-bold text-blue-700 mb-4">
-        Friendly Asked Questions
+        Frequently Asked Questions
       </h1>
       {questions.map((item, index) => (
         <div
