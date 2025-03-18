@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { getItems, getProducts } from "../api";
 import { Link } from "react-router-dom";
-import Flag from "react-world-flags";
-import friendlySticker from "../assets/friendlySticker.png";
 import { updateVotes } from "../api";
+import Flag from "react-world-flags";
 
 interface Product {
   name: string;
@@ -200,7 +199,7 @@ const Directory = () => {
 
       <div className="flex gap-5 w-[100%] mt-4 mb-4 justify-center items-center">
         <button
-          className={`w-15 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
+          className={` cursor-pointer w-15 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
             showProducts ? "bg-green-500" : "bg-gray-400"
           }`}
           onClick={handleProductButton}
@@ -260,7 +259,7 @@ const Directory = () => {
 
               <div className="flex items-center justify-center mt-3 space-x-3">
                 <button
-                  className="bg-green-500 px-3 py-1 rounded text-white text-sm hover:bg-green-600 transition"
+                  className=" cursor-pointer bg-green-500 px-3 py-1 rounded text-white text-sm hover:bg-green-600 transition"
                   onClick={() => handleVoteUpdate(1, item.Name)}
                 >
                   ▲ Upvote
@@ -268,7 +267,7 @@ const Directory = () => {
                 <span className="text-lg font-bold">{item.Votes}</span>
 
                 <button
-                  className="bg-red-500 px-3 py-1 rounded text-white text-sm hover:bg-red-600 transition"
+                  className="cursor-pointer bg-red-500 px-3 py-1 rounded text-white text-sm hover:bg-red-600 transition"
                   onClick={() => handleVoteUpdate(-1, item.Name)}
                 >
                   ▼ Downvote

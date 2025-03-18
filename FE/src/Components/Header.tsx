@@ -17,7 +17,12 @@ const Header = () => {
         className="size-8 text-black mr-5 hover:text-blue-500 hover:cursor-pointer"
         onClick={toggleSidebar}
       />
-      {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
+      {isSidebarOpen && (
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+      )}
       <div className="flex items-center ">
         <GlobeAltIcon className="h-7.5 w-8 text-blue-700 mr-1 hover:text-blue-500" />
         <Link

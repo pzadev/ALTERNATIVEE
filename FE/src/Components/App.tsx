@@ -1,12 +1,12 @@
-import "../App.css"
+import "../App.css";
+import { Routes, Route } from "react-router-dom";
 import Directory from "./Directory";
-// import FlagDisplay from "./FlagDisplay";
 import Header from "./Header";
 import Item from "./Item";
 import About from "./About";
 // import Error from "./Error";
-import { Routes, Route } from "react-router-dom";
 import Submissions from "./Submissions";
+import Faq from "./Faq";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/submissions" element={<Submissions />} />
           <Route path="/:alternative" element={<Item />} />
+          <Route path="/faq" element={<Faq />} />
           {/* <Route path="/*" element={<Error />} /> */}
         </Routes>
       </div>
