@@ -66,12 +66,12 @@ const Sidebar = ({ setIsSidebarOpen, isSidebarOpen }: SidebarProps) => {
           </li>
           <li className="mb-5">
             <Link
-              to="/support"
+              to="/resources"
               className="flex items-center text-black hover:text-blue-500"
               onClick={() => setIsSidebarOpen(false)}
             >
               <LuHandHelping className="h-7 w-7 mr-3" />
-              Support
+              Resources
             </Link>
           </li>
           <li className="mb-5">

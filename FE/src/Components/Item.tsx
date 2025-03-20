@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getItems } from "../api";
+import { updateVotes } from "../api";
 
 const Item = () => {
   const { alternative } = useParams();
@@ -21,7 +22,7 @@ const Item = () => {
         if (foundProduct) {
           setProduct(foundProduct);
         } else {
-          return
+          return;
         }
       } catch (error) {
         setError("Failed to fetch data!");
@@ -36,6 +37,14 @@ const Item = () => {
       fetchItemData();
     }
   }, []);
+
+  const handleVoteUpdate = async (voteChange: number, productName: string) => {
+    try {
+      await updateVotes(voteChange, productName);
+    } catch (error) {
+      console.error("Error updating votes:", error);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -59,6 +68,23 @@ const Item = () => {
             <h1 className="text-3xl font-semibold text-gray-800">
               {product.Name}
             </h1>
+
+            <div className="flex items-center justify-center mt-3 space-x-3">
+              <button
+                className=" cursor-pointer bg-green-500 px-3 py-1 rounded text-white text-sm hover:bg-green-600 transition"
+                onClick={() => handleVoteUpdate(1, product.Name)}
+              >
+                ▲ Upvote
+              </button>
+              <span className="text-lg font-bold">{product.Votes}</span>
+
+              <button
+                className="cursor-pointer bg-red-500 px-3 py-1 rounded text-white text-sm hover:bg-red-600 transition"
+                onClick={() => handleVoteUpdate(-1, product.Name)}
+              >
+                ▼ Downvote
+              </button>
+            </div>
 
             <p className="text-lg text-black">
               <strong className="font-medium"></strong>

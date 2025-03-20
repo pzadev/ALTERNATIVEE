@@ -7,6 +7,7 @@ import About from "./About";
 // import Error from "./Error";
 import Submissions from "./Submissions";
 import Faq from "./Faq";
+import Resources from "./Resources";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/submissions" element={<Submissions />} />
           <Route path="/:alternative" element={<Item />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/resources" element={<Resources />} />
           {/* <Route path="/*" element={<Error />} /> */}
         </Routes>
       </div>

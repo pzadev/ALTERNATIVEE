@@ -77,7 +77,7 @@ const Directory = () => {
 
   useEffect(() => {
     if (selectedCategory) {
-      const filteredItems = friendlyItems.filter((item) =>
+      const filteredItems = filteredFriendlyProducts.filter((item) =>
         item.Category.includes(selectedCategory)
       );
       setFilteredFriendlyProducts(filteredItems);
@@ -106,7 +106,7 @@ const Directory = () => {
 
   useEffect(() => {
     if (selectedCountry) {
-      const filteredByCountry = friendlyItems.filter(
+      const filteredByCountry = filteredFriendlyProducts.filter(
         (item) => item.Country === selectedCountry
       );
       setFilteredFriendlyProducts(filteredByCountry);
@@ -121,7 +121,19 @@ const Directory = () => {
 
   const handleVoteUpdate = async (voteChange: number, productName: string) => {
     try {
+      const votedProducts = JSON.parse(
+        localStorage.getItem("votedProducts") || "[]"
+      );
+
+      if (votedProducts.includes(productName)) {
+        alert("You can only vote once for each product!");
+        return;
+      }
+
       await updateVotes(voteChange, productName);
+
+      votedProducts.push(productName);
+      localStorage.setItem("votedProducts", JSON.stringify(votedProducts));
 
       setFilteredFriendlyProducts((prevItems) =>
         prevItems.map((item) =>
@@ -146,11 +158,44 @@ const Directory = () => {
         below to view popular items and their alternatives or to view friendly
         products from friendly companies.
       </h3>
+
+      <div className="flex gap-5 w-[100%] mt-4 mb-4 justify-center items-center">
+        <button
+          className={` cursor-pointer w-15 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
+            showProducts ? "bg-green-500" : "bg-gray-400"
+          }`}
+          onClick={handleProductButton}
+        >
+          <span
+            className={`w-6 h-6 bg-white rounded-full shadow-md transition-transform transform ${
+              showProducts ? "translate-x-7" : "translate-x-0"
+            }`}
+          ></span>
+        </button>
+
+        {showProducts ? (
+          <input
+            type="text"
+            placeholder="Find An Alternative To..."
+            value={productSearchQuery}
+            onChange={(e) => setProductSearchQuery(e.target.value)}
+            className="p-2 border border-black rounded-xl w-[65%] max-w-80"
+          />
+        ) : (
+          <input
+            type="text"
+            placeholder="Search Friendly Products"
+            value={friendlySearchQuery}
+            onChange={(e) => setFriendlySearchQuery(e.target.value)}
+            className="p-2 border border-black rounded-xl w-[65%] max-w-80"
+          />
+        )}
+      </div>
       <div className="flex gap-4 w-[85%] justify-center items-center">
         {categoryFilter.length > 0 && !showProducts && (
           <div className="flex ">
             <select
-              className="h-9 w-[100%] max-w-100 rounded-xl border border-grey-300"
+              className="h-9 w-[100%] max-w-100 rounded-xl border border-gray-400"
               value={selectedCategory || "all"}
               onChange={(e) => {
                 if (e.target.value === "all") {
@@ -184,7 +229,7 @@ const Directory = () => {
             <select
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
-              className="h-9 w-[100%] max-w-100 border border-black rounded-xl"
+              className="h-9 w-[100%] max-w-100 border border-gray-400 rounded-xl"
             >
               <option value="">All Countries</option>
               {countryFilter.map((country, index) => (
@@ -194,39 +239,6 @@ const Directory = () => {
               ))}
             </select>
           </div>
-        )}
-      </div>
-
-      <div className="flex gap-5 w-[100%] mt-4 mb-4 justify-center items-center">
-        <button
-          className={` cursor-pointer w-15 h-7 flex items-center bg-gray-300 rounded-full p-1 transition ${
-            showProducts ? "bg-green-500" : "bg-gray-400"
-          }`}
-          onClick={handleProductButton}
-        >
-          <span
-            className={`w-6 h-6 bg-white rounded-full shadow-md transition-transform transform ${
-              showProducts ? "translate-x-7" : "translate-x-0"
-            }`}
-          ></span>
-        </button>
-
-        {showProducts ? (
-          <input
-            type="text"
-            placeholder="Find An Alternative To..."
-            value={productSearchQuery}
-            onChange={(e) => setProductSearchQuery(e.target.value)}
-            className="p-2 border border-black rounded-xl w-[65%] max-w-80"
-          />
-        ) : (
-          <input
-            type="text"
-            placeholder="Search Friendly Products"
-            value={friendlySearchQuery}
-            onChange={(e) => setFriendlySearchQuery(e.target.value)}
-            className="p-2 border border-black rounded-xl w-[65%] max-w-80"
-          />
         )}
       </div>
 
@@ -342,6 +354,14 @@ const Directory = () => {
         </div>
       ) : (
         ""
+      )}
+
+      {filteredFriendlyProducts.length === 0 && !showProducts && (
+        <div className="mt-5">
+          <text className="text-blue-800 font-bold text-[19px]">
+            No products found in these search terms
+          </text>
+        </div>
       )}
 
       {/* Unfriendly Products */}

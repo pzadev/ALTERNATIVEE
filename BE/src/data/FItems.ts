@@ -428,7 +428,7 @@ const FItems = [
   },
   {
     Name: "DeepL",
-    Image: "https://upload.wikimedia.org/wikipedia/commons/9/96/DeepL_logo.svg",
+    Image: "https://upload.wikimedia.org/wikipedia/commons/e/ed/DeepL_logo.svg",
     Country: "Germany",
     Category: "AI",
     AlternativeTo: ["Google Translate", "Microsoft Translator"],
@@ -443,7 +443,7 @@ const FItems = [
   {
     Name: "Stable Diffusion",
     Image:
-      "https://upload.wikimedia.org/wikipedia/commons/3/3a/Stable_Diffusion_Logo.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/9/90/Stability_Ai_%E2%80%94_wordmark.png",
     Country: "United Kingdom",
     Category: "AI",
     AlternativeTo: ["DALL·E", "Midjourney"],
@@ -473,7 +473,7 @@ const FItems = [
   {
     Name: "Mastodon",
     Image:
-      "https://upload.wikimedia.org/wikipedia/commons/5/51/Mastodon_Logotype_%28Simple%29.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Mastodon_logotype_%28simple%29_new_hue.svg/1200px-Mastodon_logotype_%28simple%29_new_hue.svg.png",
     Country: "Germany",
     Category: "Social Media",
     AlternativeTo: ["Twitter/X"],
@@ -488,7 +488,7 @@ const FItems = [
   {
     Name: "Hetzner",
     Image:
-      "https://upload.wikimedia.org/wikipedia/commons/6/67/Hetzner_Online_Logo.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Logo_Hetzner.svg/2560px-Logo_Hetzner.svg.png",
     Country: "Germany",
     Category: "Domain & Hosting",
     AlternativeTo: ["AWS", "Google Cloud", "Azure"],
@@ -503,7 +503,7 @@ const FItems = [
   {
     Name: "Scaleway",
     Image:
-      "https://upload.wikimedia.org/wikipedia/commons/6/64/Scaleway_logo.svg",
+      "https://upload.wikimedia.org/wikipedia/fr/thumb/a/a3/ScalewayLogo.svg/2560px-ScalewayLogo.svg.png",
     Country: "France",
     Category: "Domain & Hosting",
     AlternativeTo: ["AWS", "Google Cloud", "Azure"],
@@ -518,7 +518,7 @@ const FItems = [
   {
     Name: "OVHcloud",
     Image:
-      "https://upload.wikimedia.org/wikipedia/commons/5/51/OVHcloud_logo.svg",
+      "https://corporate.ovhcloud.com/sites/default/files/2022-03/ovhcloud-logo2.png",
     Country: "France",
     Category: "Domain & Hosting",
     AlternativeTo: ["AWS", "Google Cloud", "Azure"],
@@ -546,7 +546,7 @@ const FItems = [
   },
   {
     Name: "IONOS",
-    Image: "https://upload.wikimedia.org/wikipedia/commons/3/3e/IONOS_Logo.svg",
+    Image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Ionos_Logo_2022.svg/2560px-Ionos_Logo_2022.svg.png",
     Country: "Germany",
     Category: "Domain & Hosting",
     AlternativeTo: ["GoDaddy", "AWS"],
