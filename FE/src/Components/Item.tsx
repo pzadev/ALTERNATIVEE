@@ -74,7 +74,7 @@ const Item = () => {
                 className=" cursor-pointer bg-green-500 px-3 py-1 rounded text-white text-sm hover:bg-green-600 transition"
                 onClick={() => handleVoteUpdate(1, product.Name)}
               >
-                ▲ Upvote
+                ▲ Like
               </button>
               <span className="text-lg font-bold">{product.Votes}</span>
 
@@ -82,7 +82,7 @@ const Item = () => {
                 className="cursor-pointer bg-red-500 px-3 py-1 rounded text-white text-sm hover:bg-red-600 transition"
                 onClick={() => handleVoteUpdate(-1, product.Name)}
               >
-                ▼ Downvote
+                ▼ Dislike
               </button>
             </div>
 
