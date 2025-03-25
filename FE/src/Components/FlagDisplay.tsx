@@ -20,8 +20,8 @@ const FlagDisplay = () => {
     "UKR",
     "DK",
     "LT",
-    "EST", 
-    "BEL"
+    "EST",
+    "BEL",
   ];
 
   const numFlags = countries.length;
@@ -42,7 +42,10 @@ const FlagDisplay = () => {
                 transform: `translate(${x}px, ${y}px)`,
               }}
             >
-              <Flag code={countryCode} style={{ width: 32, height: 22, borderRadius: '5px' }} />
+              <Flag
+                code={countryCode}
+                style={{ width: 32, height: 22, borderRadius: "5px" }}
+              />
             </div>
           );
         })}

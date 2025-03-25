@@ -7,10 +7,10 @@ const Resources = () => {
         "Go European is an advocacy platform that promotes the use and support of European-made products and services. It aims to showcase the quality and innovation of European industries and to encourage consumers to choose European goods.",
     },
     {
-      name: "Made in Europe",
-      link: "https://www.madeineurope.org",
+      name: "It is made in Europe",
+      link: "https://itismadeineurope.com/",
       description:
-        "Made in Europe is an initiative that highlights products that are manufactured in Europe. The website provides resources to help consumers make informed choices, emphasizing sustainable practices and quality standards of European-made products.",
+        "It is made in Europe is an initiative that highlights products that are manufactured in Europe. The website provides resources to help consumers make informed choices, emphasizing sustainable practices and quality standards of European-made products.",
     },
     {
       name: "European Union Products",
@@ -45,8 +45,12 @@ const Resources = () => {
           className="hover:scale-105 transition-transform duration-100 font-bold bg-blue-200 w-100 h-auto p-6 mb-5 rounded-lg shadow-sm flex flex-col items-center text-center cursor-pointer"
         >
           <a href={resource.link}>
-          <h3 className="text-[22px] hover:text-green-500 text-blue-700 cursor-pointer 
-text-decoration-line: underline;">{resource.name}</h3>
+            <h3
+              className="text-[22px] hover:text-green-500 text-blue-700 cursor-pointer 
+text-decoration-line: underline;"
+            >
+              {resource.name}
+            </h3>
           </a>
           <span className="text-[14px]">{resource.description}</span>
         </div>

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:1901/api";
 const API_URL = "https://alternativee-production.up.railway.app/api";
 
 const DIRECTORY_API_URL = `${API_URL}/directory`;
